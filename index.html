@@ -12,8 +12,10 @@
       --surface: #ffffff;
       --border: #e5e5e0;
       --text: #1a1a1a;
+      --text-body: #333;
       --muted: #6b6b6b;
       --accent: #2563eb;
+      --accent-visited: #93c5fd;
       --accent-light: #eff6ff;
       --radius: 10px;
       --max-w: 760px;
@@ -97,14 +99,7 @@
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-
-    .tagline {
-      font-size: 0.95rem;
-      color: var(--muted);
       margin-bottom: 24px;
-      line-height: 1.5;
     }
 
     .links { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -131,7 +126,7 @@
     }
 
     /* ---- about ---- */
-    #about p { color: #333; }
+    #about p { color: var(--text-body); }
 
     /* ---- education ---- */
     .edu-list { display: flex; flex-direction: column; gap: 20px; }
@@ -145,7 +140,7 @@
     .edu-year { font-size: 12px; color: var(--muted); padding-top: 2px; }
     .edu-name { font-weight: 600; margin-bottom: 2px; }
     .edu-degree { color: var(--muted); font-size: 13.5px; }
-    .edu-note { font-size: 12.5px; color: #222; margin-top: 3px; }
+    .edu-note { font-size: 12.5px; color: var(--text); margin-top: 3px; }
 
     /* ---- experience ---- */
     .exp-header {
@@ -167,7 +162,7 @@
       padding-left: 14px;
       position: relative;
       font-size: 13.5px;
-      color: #333;
+      color: var(--text-body);
     }
 
     .exp-bullets li::before {
@@ -177,19 +172,34 @@
       color: var(--muted);
     }
 
-    /* ---- projects ---- */
-    .project-stack { display: flex; flex-direction: column; gap: 12px; }
-
-    .project-card {
+    /* ---- shared card ---- */
+    .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px;
     }
 
+    /* ---- projects ---- */
+    .project-stack { display: flex; flex-direction: column; gap: 12px; }
+
+    .project-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .project-group-label--placeholder {
+      margin-top: 28px;
+      color: var(--border);
+    }
+
     .project-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
     .project-meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
-    .project-card p { font-size: 13px; color: #444; margin-bottom: 12px; }
+    .project-card p { font-size: 13px; color: var(--text-body); margin-bottom: 12px; }
 
     .card-footer {
       display: flex;
@@ -198,6 +208,8 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
+    .card-links { display: flex; gap: 10px; }
 
     .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
 
@@ -228,6 +240,8 @@
     .map-legend { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12px; color: var(--muted); }
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .legend-dot--lived { background: var(--accent); }
+    .legend-dot--visited { background: var(--accent-visited); }
 
     #map-tooltip {
       position: fixed;
@@ -260,17 +274,13 @@
     .map-hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
 
     /* ---- publication ---- */
-    .pub-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-    }
-
     .pub-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
     .pub-card p { font-size: 13px; color: var(--muted); }
+    .pub-card + .pub-card { margin-top: 12px; }
 
     /* ---- films ---- */
+    .section-intro { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
     .film-list { display: flex; flex-direction: column; }
 
     .film-item {
@@ -286,6 +296,8 @@
     .film-item:first-child { border-top: 1px solid var(--border); }
     .film-title { font-size: 14px; font-weight: 500; }
     .film-meta { font-size: 12px; color: var(--muted); }
+
+    .link-muted { font-size: 12.5px; color: var(--muted); }
 
     /* ---- footer ---- */
     footer {
@@ -304,7 +316,6 @@
 
       #hero { padding: 40px 0 36px; }
       #hero h1 { font-size: 1.9rem; }
-      .tagline { font-size: 0.88rem; }
 
       .edu-item { grid-template-columns: 1fr; gap: 2px; }
       .edu-year { padding-top: 0; }
@@ -333,7 +344,6 @@
 <div class="container">
   <section id="hero">
     <h1>Gyehyu Kim</h1>
-
     <div class="links">
       <a class="link-btn" href="mailto:diziba213@gmail.com">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
@@ -429,7 +439,7 @@
     <h2>Projects</h2>
     <div class="project-stack">
 
-      <div class="project-card">
+      <div class="card project-card">
         <h3>CargoOps — Digital Twin Warehouse System</h3>
         <div class="project-meta">CMU Capstone &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Team of 5</div>
         <p>Built a serverless WMS on AWS and simulated the full warehouse workflow in AnyLogic. The model showed that with the same headcount and equipment, throughput could double — or the same output achieved at half the cost. Random Forest models predicted per-task processing times across six operational stages.</p>
@@ -444,7 +454,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="card project-card">
         <h3>Project Affinity — Brand–Influencer Matching</h3>
         <div class="project-meta">CMU &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Team project</div>
         <p>Developed a multimodal fitness score for brand–influencer alignment using CNN image classification and LLM text analysis across 75,000+ Instagram posts. A 10-point score improvement corresponded to 13.2% more comments — an objective, explainable alternative to gut-feel influencer selection.</p>
@@ -459,7 +469,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="card project-card">
         <h3>Luxury Retail Strategy — D&amp;G vs. Prada</h3>
         <div class="project-meta">Bocconi &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Evaluated by D&amp;G merchandiser</div>
         <p>Scraped men's outerwear data from both brands, then went on-site in Milan's Montenapoleone district to compare VMD, pricing architecture, and service styles. Identified a gap in D&amp;G's assortment and proposed a 20-SKU "New Essentials" line — evaluated directly by a D&amp;G industry professional.</p>
@@ -473,7 +483,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="card project-card">
         <h3>Food Supplements Industry — PE Investment Analysis</h3>
         <div class="project-meta">Bocconi &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Management Consulting</div>
         <p>Assessed the global food supplements industry as an entry point for a private equity fund. Built a three-part consumer-centric taxonomy (Health &amp; Wellness, Sports &amp; Performance, Beauty &amp; Aesthetic), analyzed supply-side dynamics across four major markets, and recommended CDMO-focused investment over brand acquisition — prioritizing regulatory moat and diversified client risk.</p>
@@ -483,7 +493,7 @@
             <span class="tag">Market Analysis</span>
             <span class="tag">CDMO</span>
           </div>
-          <div style="display:flex; gap:10px;">
+          <div class="card-links">
             <a class="pdf-link" href="bocconi-food-supplements-deck.pdf" target="_blank">Deck &rarr;</a>
             <a class="pdf-link" href="bocconi-food-supplements-report.pdf" target="_blank">Report &rarr;</a>
           </div>
@@ -492,9 +502,8 @@
 
     </div>
 
-    <p class="project-group-label" style="margin-top: 28px; color: var(--border);">Independent</p>
-
-    <p class="project-group-label" style="margin-top: 28px; color: var(--border);">Hobby</p>
+    <p class="project-group-label project-group-label--placeholder">Independent</p>
+    <p class="project-group-label project-group-label--placeholder">Hobby</p>
 
   </section>
 </div>
@@ -504,8 +513,8 @@
   <section id="travel">
     <h2>Places — 2025</h2>
     <div class="map-legend">
-      <span class="legend-item"><span class="legend-dot" style="background:#2563eb;"></span>Lived</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#93c5fd;"></span>Visited</span>
+      <span class="legend-item"><span class="legend-dot legend-dot--lived"></span>Lived</span>
+      <span class="legend-item"><span class="legend-dot legend-dot--visited"></span>Visited</span>
     </div>
     <div id="map"></div>
     <div id="map-panel"></div>
@@ -518,23 +527,23 @@
 <div class="container">
   <section id="publication">
     <h2>Publication</h2>
-    <div class="pub-card">
+    <div class="card pub-card">
       <h3><a href="https://pubs.aip.org/aip/bmf/article/10/6/064118/385498/A-simple-method-for-activating-the-platelets-used" target="_blank">A simple method for activating the platelets used in a microfluidic system</a></h3>
       <p>Co-first author &nbsp;·&nbsp; <em>Biomicrofluidics</em> (SCI) &nbsp;·&nbsp; AIP Publishing &nbsp;·&nbsp; 2016 &nbsp;·&nbsp; <a href="biomicrofluidics-2016-platelet-activation.pdf" target="_blank">PDF</a></p>
     </div>
 
-    <div class="pub-card" style="margin-top: 12px;">
+    <div class="card pub-card">
       <h3>Development of a microfluidic assay for aspirin resistance of platelets</h3>
       <p>Master's Thesis &nbsp;·&nbsp; Korea University, Dept. of Mechanical Engineering &nbsp;·&nbsp; Jan 2017 &nbsp;·&nbsp; <a href="thesis-2017-platelet-assay.pdf" target="_blank">PDF</a></p>
     </div>
 
     <details style="margin-top: 14px;">
       <summary style="font-size: 12px; color: var(--muted); cursor: pointer; user-select: none; padding: 4px 0;">Conference proceedings</summary>
-      <div class="pub-card" style="margin-top: 10px;">
+      <div class="card pub-card" style="margin-top: 10px;">
         <h3>Effect of Micro-stirrer Geometry on Platelet Activation and Aggregation</h3>
         <p>Kim G., Lee H., Choi S. &nbsp;·&nbsp; Korean Society of Mechanical Engineers (KSME) &nbsp;·&nbsp; Nov 2015 &nbsp;·&nbsp; <a href="ksme-2015-micro-stirrer-platelet.pdf" target="_blank">PDF</a></p>
       </div>
-      <div class="pub-card" style="margin-top: 10px;">
+      <div class="card pub-card" style="margin-top: 10px;">
         <h3>Development of a New Method for Platelet Function Test and Its Shearing Condition in Microfluidic System</h3>
         <p>Lee H., Kim G., Choi S., Shin S. &nbsp;·&nbsp; APS Division of Fluid Dynamics Meeting &nbsp;·&nbsp; Nov 2015</p>
       </div>
@@ -546,7 +555,7 @@
 <div class="container">
   <section id="films">
     <h2>Favorite Films</h2>
-    <p style="font-size:13px; color:var(--muted); margin-bottom: 20px;">Visually precise, structurally layered — usually nonlinear.</p>
+    <p class="section-intro">Visually precise, structurally layered — usually nonlinear.</p>
     <div class="film-list">
 
       <div class="film-item">
@@ -576,7 +585,7 @@
 
     </div>
     <p style="margin-top: 18px;">
-      <a href="https://pedia.watcha.com/ko-KR/users/zNM5Njlo7526j" target="_blank" style="font-size:12.5px; color:var(--muted);">900+ ratings on Watcha &rarr;</a>
+      <a href="https://pedia.watcha.com/ko-KR/users/zNM5Njlo7526j" target="_blank" class="link-muted">900+ ratings on Watcha &rarr;</a>
     </p>
   </section>
 </div>
@@ -587,9 +596,9 @@
   </div>
 </footer>
 
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
-<script>
+<script src="https://d3js.org/d3.v7.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js" defer></script>
+<script defer>
   const visitData = {
     840: {
       name: "United States",
@@ -612,19 +621,28 @@
     756: { name: "Switzerland",    cities: ["Bern"] }
   };
 
-  const isMobile = () => window.innerWidth <= 600;
+  /* Cache mobile state — update only on actual resize, not per-event */
+  const mobileQuery = window.matchMedia('(max-width: 600px)');
+  let isMobile = mobileQuery.matches;
+  mobileQuery.addEventListener('change', e => { isMobile = e.matches; });
+
+  /* CSS variable values for tooltip inline styles */
+  const cssVars = getComputedStyle(document.documentElement);
+  const C_ACCENT  = cssVars.getPropertyValue('--accent').trim();
+  const C_MUTED   = cssVars.getPropertyValue('--muted').trim();
+  const C_BODY    = cssVars.getPropertyValue('--text-body').trim();
 
   function buildTooltipHTML(data) {
     let html = `<strong style="font-size:13px;">${data.name}</strong>`;
     if (data.residence?.length) {
-      html += `<div style="margin-top:6px; color:#2563eb; font-weight:600;">Lived in</div>`;
-      html += `<div style="color:#444;">${data.residence.join(', ')}</div>`;
+      html += `<div style="margin-top:6px;color:${C_ACCENT};font-weight:600;">Lived in</div>`;
+      html += `<div style="color:${C_BODY};">${data.residence.join(', ')}</div>`;
     }
     if (data.cities?.length) {
-      html += `<div style="margin-top:6px; color:#6b6b6b; font-weight:600;">Also visited</div>`;
-      html += `<div style="color:#444;">${data.cities.join(', ')}</div>`;
+      html += `<div style="margin-top:6px;color:${C_MUTED};font-weight:600;">Also visited</div>`;
+      html += `<div style="color:${C_BODY};">${data.cities.join(', ')}</div>`;
     }
-    html += `<div style="margin-top:7px; color:#aaa; font-size:11px;">2025</div>`;
+    html += `<div style="margin-top:7px;color:#aaa;font-size:11px;">2025</div>`;
     return html;
   }
 
@@ -633,56 +651,78 @@
   const hint    = document.getElementById('map-hint');
   const tooltip = document.getElementById('map-tooltip');
 
-  const W = mapEl.clientWidth || 760;
-  const H = Math.round(W * 0.52);
+  function clampTooltip(clientX, clientY) {
+    const TW = 250, TH = 120; /* estimated tooltip dimensions */
+    const tx = Math.min(clientX + 16, window.innerWidth - TW);
+    const ty = Math.min(clientY - 10, window.innerHeight - TH);
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top  = ty + 'px';
+  }
 
-  const svg = d3.select('#map')
-    .append('svg')
-    .attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('width', '100%');
+  function renderMap() {
+    mapEl.innerHTML = '';
+    const W = mapEl.clientWidth || 760;
+    const H = Math.round(W * 0.52);
 
-  const projection = d3.geoNaturalEarth1()
-    .scale(W / 6.4)
-    .translate([W / 2, H / 2]);
+    const svg = d3.select('#map')
+      .append('svg')
+      .attr('viewBox', `0 0 ${W} ${H}`)
+      .attr('width', '100%');
 
-  const path = d3.geoPath().projection(projection);
+    const projection = d3.geoNaturalEarth1()
+      .scale(W / 6.4)
+      .translate([W / 2, H / 2]);
 
-  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
-    const countries = topojson.feature(world, world.objects.countries);
+    const path = d3.geoPath().projection(projection);
 
-    svg.selectAll('path')
-      .data(countries.features)
-      .join('path')
-      .attr('d', path)
-      .attr('fill', d => {
-        const data = visitData[+d.id];
-        if (!data) return '#ebebea';
-        return data.residence ? '#2563eb' : '#93c5fd';
+    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+      .then(world => {
+        const countries = topojson.feature(world, world.objects.countries);
+
+        svg.selectAll('path')
+          .data(countries.features)
+          .join('path')
+          .attr('d', path)
+          .attr('fill', d => {
+            const data = visitData[+d.id];
+            if (!data) return '#ebebea';
+            return data.residence ? C_ACCENT : cssVars.getPropertyValue('--accent-visited').trim();
+          })
+          .attr('stroke', '#fff')
+          .attr('stroke-width', 0.4)
+          .on('mousemove', (event, d) => {
+            if (isMobile) return;
+            const data = visitData[+d.id];
+            if (!data) return;
+            tooltip.innerHTML = buildTooltipHTML(data);
+            tooltip.style.opacity = '1';
+            clampTooltip(event.clientX, event.clientY);
+          })
+          .on('mouseleave', () => { if (!isMobile) tooltip.style.opacity = '0'; })
+          .on('click', (event, d) => {
+            const data = visitData[+d.id];
+            if (!data) { panel.classList.remove('visible'); hint.style.display = ''; return; }
+            if (isMobile) {
+              panel.innerHTML = buildTooltipHTML(data);
+              panel.classList.add('visible');
+              hint.style.display = 'none';
+              panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
       })
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 0.4)
-      .on('mousemove', (event, d) => {
-        if (isMobile()) return;
-        const data = visitData[+d.id];
-        if (!data) return;
-        tooltip.innerHTML = buildTooltipHTML(data);
-        tooltip.style.opacity = '1';
-        const tx = Math.min(event.clientX + 16, window.innerWidth - 250);
-        tooltip.style.left = tx + 'px';
-        tooltip.style.top  = (event.clientY - 10) + 'px';
-      })
-      .on('mouseleave', () => { if (!isMobile()) tooltip.style.opacity = '0'; })
-      .on('click', (event, d) => {
-        const data = visitData[+d.id];
-        if (!data) { panel.classList.remove('visible'); hint.style.display = ''; return; }
-        if (isMobile()) {
-          panel.innerHTML = buildTooltipHTML(data);
-          panel.classList.add('visible');
-          hint.style.display = 'none';
-          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
+      .catch(() => {
+        mapEl.innerHTML = '<p style="padding:20px;color:var(--muted);font-size:13px;">Map unavailable — check your connection.</p>';
       });
+  }
+
+  /* Re-render on resize (debounced) */
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderMap, 200);
   });
+
+  renderMap();
 </script>
 </body>
 </html>
