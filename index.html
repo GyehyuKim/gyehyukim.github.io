@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gyehyu Kim</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f9f7;
+      --surface: #ffffff;
+      --border: #e5e5e0;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --radius: 10px;
+      --max-w: 760px;
+      --section-pad: 60px;
+      --container-pad: 24px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      padding-top: 48px; /* nav height */
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---- nav ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 48px;
+      background: rgba(249,249,247,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-inner a {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-inner a:hover {
+      background: var(--border);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* ---- layout ---- */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--container-pad); }
+
+    section { padding: var(--section-pad) 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    h2 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* ---- hero ---- */
+    #hero { padding: 64px 0 52px; border-bottom: 1px solid var(--border); }
+
+    #hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+      min-height: 40px;
+    }
+
+    .link-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    /* ---- about ---- */
+    #about p { color: #333; }
+
+    /* ---- education ---- */
+    .edu-list { display: flex; flex-direction: column; gap: 20px; }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 0 16px;
+    }
+
+    .edu-year { font-size: 12px; color: var(--muted); padding-top: 2px; }
+    .edu-name { font-weight: 600; margin-bottom: 2px; }
+    .edu-degree { color: var(--muted); font-size: 13.5px; }
+    .edu-note { font-size: 12.5px; color: var(--accent); margin-top: 3px; }
+
+    /* ---- experience ---- */
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .exp-title { font-weight: 600; font-size: 15px; }
+    .exp-period { font-size: 12px; color: var(--muted); }
+    .exp-company { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+    .exp-bullets li {
+      padding-left: 14px;
+      position: relative;
+      font-size: 13.5px;
+      color: #333;
+    }
+
+    .exp-bullets li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* ---- projects ---- */
+    .project-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .project-stack { display: flex; flex-direction: column; gap: 12px; }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .project-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .project-meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
+    .project-card p { font-size: 13px; color: #444; margin-bottom: 12px; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+    }
+
+    /* ---- travel map ---- */
+    #map {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    #map svg { display: block; }
+
+    .map-legend { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12px; color: var(--muted); }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    /* desktop tooltip */
+    #map-tooltip {
+      position: fixed;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.12s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      z-index: 300;
+      max-width: 230px;
+      line-height: 1.5;
+    }
+
+    /* mobile tap panel */
+    #map-panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    #map-panel.visible { display: block; }
+
+    .map-hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+    /* ---- publication ---- */
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .pub-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
+    .pub-card p { font-size: 13px; color: var(--muted); }
+
+    /* ---- films ---- */
+    .film-list { display: flex; flex-direction: column; }
+
+    .film-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .film-item:first-child { border-top: 1px solid var(--border); }
+    .film-title { font-size: 14px; font-weight: 500; }
+    .film-meta { font-size: 12px; color: var(--muted); }
+
+    /* ---- footer ---- */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ======== MOBILE ======== */
+    @media (max-width: 600px) {
+      :root {
+        --section-pad: 40px;
+        --container-pad: 18px;
+      }
+
+      body { font-size: 15px; }
+
+      #hero { padding: 40px 0 36px; }
+
+      #hero h1 { font-size: 1.9rem; }
+
+      .tagline { font-size: 0.88rem; }
+
+      /* edu: stack year above content */
+      .edu-item {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .edu-year { padding-top: 0; }
+
+      /* hide desktop tooltip, use panel instead */
+      #map-tooltip { display: none !important; }
+      #map-panel { display: none; }
+      #map-panel.visible { display: block; }
+
+      .film-meta { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero">Gyehyu Kim</a>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#travel">Places</a>
+    <a href="#publication">Publication</a>
+    <a href="#films">Films</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section id="hero">
+    <h1>Gyehyu Kim</h1>
+    <p class="tagline">Strategy &amp; Data Operations &nbsp;·&nbsp; KAIST MS '26 &nbsp;·&nbsp; Ex-Samsung Biologics</p>
+    <div class="links">
+      <a class="link-btn" href="mailto:diziba213@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Email
+      </a>
+      <a class="link-btn" href="https://github.com/diziba213" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.153-1.11-1.46-1.11-1.46-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.578 9.578 0 0 1 2.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.376.202 2.393.1 2.646.64.698 1.027 1.59 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a class="link-btn" href="https://linkedin.com/in/gyehyukim" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="link-btn" href="https://www.instagram.com/gyehyu_kim/" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<div class="container">
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      I spent 7 years at Samsung Biologics building data infrastructure and operations strategy from the ground up — self-teaching SQL, integrating five enterprise systems, and turning manual reporting into real-time analytics for 250 people. I'm now finishing an MS at KAIST, with exchange programs at Carnegie Mellon (SCS) and Bocconi, where I applied those instincts to cloud architecture, ML, and business strategy. I'm drawn to roles where operations, data, and decision-making intersect.
+    </p>
+  </section>
+</div>
+
+<!-- EDUCATION -->
+<div class="container">
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu-list">
+
+      <div class="edu-item">
+        <span class="edu-year">2024 – 2026</span>
+        <div>
+          <div class="edu-name">KAIST College of Business</div>
+          <div class="edu-degree">MS in Information Management &nbsp;·&nbsp; Global Business Analytics</div>
+          <div class="edu-note">Exchange: Carnegie Mellon University (SCS, S3D) &nbsp;·&nbsp; Università Bocconi</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <span class="edu-year">2015 – 2017</span>
+        <div>
+          <div class="edu-name">Korea University</div>
+          <div class="edu-degree">MS in Mechanical Engineering &nbsp;·&nbsp; Microfluidics &amp; Biomedical Engineering</div>
+          <div class="edu-note">Co-first author publication in <em>Biomicrofluidics</em> (SCI)</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <span class="edu-year">2020 – 2022</span>
+        <div>
+          <div class="edu-name">Korea National Open University</div>
+          <div class="edu-degree">BS in Business Administration</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <span class="edu-year">2008 – 2015</span>
+        <div>
+          <div class="edu-name">Myongji University</div>
+          <div class="edu-degree">BS in Mechanical Engineering</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="container">
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="exp-header">
+      <span class="exp-title">Samsung Biologics</span>
+      <span class="exp-period">Jul 2017 – Dec 2024 &nbsp;·&nbsp; 7 yrs</span>
+    </div>
+    <div class="exp-company">Senior Engineer &nbsp;·&nbsp; Incheon, South Korea</div>
+    <ul class="exp-bullets">
+      <li>Built the department's first data pipeline by self-teaching SQL and integrating five enterprise systems (EAM, SAP, LIMS, HR, Veeva) into a central data mart — reducing one-week manual reports to real-time self-service dashboards used by 25 managers.</li>
+      <li>Led centralization of lab equipment maintenance for 250 staff across three divisions (8B KRW annual budget), designing workflows and onboarding 1,500+ assets into GMP-compliant systems.</li>
+      <li>Investigated 7 years of settlement records, identified 700M KRW in billing errors, and redesigned the vendor workflow to achieve zero errors under CFO/CEO oversight.</li>
+      <li>Designed the company's first Reliability Program for 5,000+ manufacturing assets, coordinating three global advisors (Jacobs, Eli Lilly, Lonza) and delivering to CEO and group headquarters.</li>
+    </ul>
+  </section>
+</div>
+
+<!-- PROJECTS -->
+<div class="container">
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <p class="project-group-label">Academic</p>
+    <div class="project-stack">
+
+      <div class="project-card">
+        <h3>CargoOps — Digital Twin WMS</h3>
+        <div class="project-meta">CMU Capstone &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Team of 5</div>
+        <p>Designed an AWS serverless warehouse management system with a Digital Twin simulation in AnyLogic and Random Forest models for process time prediction. Simulation B showed same-cost, 2x throughput improvement.</p>
+        <div class="tag-list">
+          <span class="tag">AWS</span>
+          <span class="tag">DynamoDB</span>
+          <span class="tag">Athena</span>
+          <span class="tag">AnyLogic</span>
+          <span class="tag">Random Forest</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Project Affinity — Influencer Matching</h3>
+        <div class="project-meta">CMU &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Team project</div>
+        <p>Multimodal brand-influencer fitness scoring using CNN (Inception V3) for image analysis and LLM for caption/hashtag evaluation across 75,000+ Instagram posts. A 10-point fitness score increase correlated with 13.2% more comments.</p>
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">CNN</span>
+          <span class="tag">LLM</span>
+          <span class="tag">Statistical Validation</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Luxury Retail Analysis — D&amp;G vs. Prada</h3>
+        <div class="project-meta">Bocconi &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Evaluated by D&amp;G merchandiser</div>
+        <p>Combined Python web crawler (prices, materials, SKUs) with in-store field research in Milan's Montenapoleone district. Proposed a "New Essentials" 20-SKU line strategy; presented to and evaluated by a D&amp;G industry professional.</p>
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">Web Scraping</span>
+          <span class="tag">Competitive Analysis</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="project-group-label" style="margin-top: 28px;">Industry</p>
+    <div class="project-stack">
+
+      <div class="project-card">
+        <h3>Enterprise Data Pipeline — Samsung Biologics</h3>
+        <div class="project-meta">2022 – 2024 &nbsp;·&nbsp; Solo</div>
+        <p>Designed and operated the facility team's first data mart by connecting five enterprise systems via Azure EDW. Built Power BI dashboards for 25 manager-level active users and automated VP-level weekly KPI reporting.</p>
+        <div class="tag-list">
+          <span class="tag">SQL</span>
+          <span class="tag">Azure EDW</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">SAP</span>
+          <span class="tag">IBM Maximo</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- TRAVEL -->
+<div class="container">
+  <section id="travel">
+    <h2>Places — 2025</h2>
+    <div class="map-legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#2563eb;"></span>Lived</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#93c5fd;"></span>Visited</span>
+    </div>
+    <div id="map"></div>
+    <div id="map-panel"></div>
+    <p class="map-hint" id="map-hint">Tap a highlighted country for details.</p>
+    <div id="map-tooltip"></div>
+  </section>
+</div>
+
+<!-- PUBLICATION -->
+<div class="container">
+  <section id="publication">
+    <h2>Publication</h2>
+    <div class="pub-card">
+      <h3><a href="https://pubs.aip.org/aip/bmf/article/10/6/064118/385498/A-simple-method-for-activating-the-platelets-used" target="_blank">A simple method for activating the platelets used in a microfluidic system</a></h3>
+      <p>Co-first author &nbsp;·&nbsp; <em>Biomicrofluidics</em> (SCI) &nbsp;·&nbsp; AIP Publishing &nbsp;·&nbsp; 2016 &nbsp;·&nbsp; <a href="064118_1_online.pdf" target="_blank">PDF</a></p>
+    </div>
+
+    <div class="pub-card" style="margin-top: 12px;">
+      <h3>Development of a microfluidic assay for aspirin resistance of platelets</h3>
+      <p>Master's Thesis &nbsp;·&nbsp; Korea University, Dept. of Mechanical Engineering &nbsp;·&nbsp; Jan 2017 &nbsp;·&nbsp; <a href="000000073108_20260321212507.pdf" target="_blank">PDF</a></p>
+    </div>
+
+    <details style="margin-top: 14px;">
+      <summary style="font-size: 12px; color: var(--muted); cursor: pointer; user-select: none; padding: 4px 0;">Conference proceedings</summary>
+      <div class="pub-card" style="margin-top: 10px;">
+        <h3>Effect of Micro-stirrer Geometry on Platelet Activation and Aggregation</h3>
+        <p>Kim G., Lee H., Choi S. &nbsp;·&nbsp; Korean Society of Mechanical Engineers (KSME) &nbsp;·&nbsp; Nov 2015 &nbsp;·&nbsp; <a href="%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%20%EC%8A%A4%ED%84%B0%EB%9F%AC%EC%9D%98%20%EA%B8%B0%ED%95%98%ED%98%95%EC%83%81%EC%9D%B4%20%ED%98%88%EC%86%8C%ED%8C%90%20%ED%99%9C%EC%84%B1%ED%99%94%20%EB%B0%8F%20%EC%9D%91%EC%A7%91%EC%97%90%20%EB%AF%B8%EC%B9%98%EB%8A%94%20%EC%98%81%ED%96%A5.pdf" target="_blank">PDF</a></p>
+      </div>
+    </details>
+  </section>
+</div>
+
+<!-- FILMS -->
+<div class="container">
+  <section id="films">
+    <h2>Favorite Films</h2>
+    <p style="font-size:13px; color:var(--muted); margin-bottom: 20px;">Visually precise, structurally layered — usually nonlinear.</p>
+    <div class="film-list">
+
+      <div class="film-item">
+        <span class="film-title">Contact</span>
+        <span class="film-meta">Robert Zemeckis &nbsp;·&nbsp; 1997</span>
+      </div>
+
+      <div class="film-item">
+        <span class="film-title">The Grand Budapest Hotel</span>
+        <span class="film-meta">Wes Anderson &nbsp;·&nbsp; 2014</span>
+      </div>
+
+      <div class="film-item">
+        <span class="film-title">Mad Max: Fury Road</span>
+        <span class="film-meta">George Miller &nbsp;·&nbsp; 2015</span>
+      </div>
+
+      <div class="film-item">
+        <span class="film-title">Arrival</span>
+        <span class="film-meta">Denis Villeneuve &nbsp;·&nbsp; 2016</span>
+      </div>
+
+      <div class="film-item">
+        <span class="film-title">Decision to Leave &nbsp;<span style="font-weight:400; color:var(--muted);">헤어질 결심</span></span>
+        <span class="film-meta">Park Chan-wook &nbsp;·&nbsp; 2022</span>
+      </div>
+
+    </div>
+    <p style="margin-top: 18px;">
+      <a href="https://pedia.watcha.com/ko-KR/users/zNM5Njlo7526j" target="_blank" style="font-size:12.5px; color:var(--muted);">900+ ratings on Watcha &rarr;</a>
+    </p>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    Gyehyu Kim &nbsp;·&nbsp; Seoul, South Korea &nbsp;·&nbsp; diziba213@gmail.com
+  </div>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
+<script>
+  const visitData = {
+    840: {
+      name: "United States",
+      residence: ["Pittsburgh"],
+      cities: ["New York", "Washington D.C.", "San Francisco", "San Jose", "Yosemite", "Boston", "Philadelphia", "Buffalo / Niagara Falls", "Miami", "Key West", "Orlando", "Detroit", "Chicago", "Cleveland", "Mill Run (Fallingwater)"]
+    },
+    380: {
+      name: "Italy",
+      residence: ["Milan"],
+      cities: ["Venice", "Florence", "Rome", "Genoa"]
+    },
+    826: { name: "United Kingdom", cities: ["London"] },
+    372: { name: "Ireland",        cities: ["Dublin"] },
+    276: { name: "Germany",        cities: ["Munich", "Cologne"] },
+    40:  { name: "Austria",        cities: ["Vienna"] },
+    724: { name: "Spain",          cities: ["Córdoba", "Seville", "Ronda", "Málaga", "Granada"] },
+    250: { name: "France",         cities: ["Paris", "Nice"] },
+    492: { name: "Monaco",         cities: ["Monaco"] },
+    578: { name: "Norway",         cities: ["Tromsø"] },
+    756: { name: "Switzerland",    cities: ["Bern"] }
+  };
+
+  const isMobile = () => window.innerWidth <= 600;
+
+  function buildTooltipHTML(data) {
+    let html = `<strong style="font-size:13px;">${data.name}</strong>`;
+    if (data.residence?.length) {
+      html += `<div style="margin-top:6px; color:#2563eb; font-weight:600;">Lived in</div>`;
+      html += `<div style="color:#444;">${data.residence.join(', ')}</div>`;
+    }
+    if (data.cities?.length) {
+      html += `<div style="margin-top:6px; color:#6b6b6b; font-weight:600;">Also visited</div>`;
+      html += `<div style="color:#444;">${data.cities.join(', ')}</div>`;
+    }
+    html += `<div style="margin-top:7px; color:#aaa; font-size:11px;">2025</div>`;
+    return html;
+  }
+
+  const mapEl  = document.getElementById('map');
+  const panel  = document.getElementById('map-panel');
+  const hint   = document.getElementById('map-hint');
+  const tooltip = document.getElementById('map-tooltip');
+
+  const W = mapEl.clientWidth || 760;
+  const H = Math.round(W * 0.52);
+
+  const svg = d3.select('#map')
+    .append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('width', '100%');
+
+  const projection = d3.geoNaturalEarth1()
+    .scale(W / 6.4)
+    .translate([W / 2, H / 2]);
+
+  const path = d3.geoPath().projection(projection);
+
+  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
+    const countries = topojson.feature(world, world.objects.countries);
+
+    svg.selectAll('path')
+      .data(countries.features)
+      .join('path')
+      .attr('d', path)
+      .attr('fill', d => {
+        const data = visitData[+d.id];
+        if (!data) return '#ebebea';
+        return data.residence ? '#2563eb' : '#93c5fd';
+      })
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 0.4)
+      /* desktop: hover */
+      .on('mousemove', (event, d) => {
+        if (isMobile()) return;
+        const data = visitData[+d.id];
+        if (!data) return;
+        tooltip.innerHTML = buildTooltipHTML(data);
+        tooltip.style.opacity = '1';
+        const tx = Math.min(event.clientX + 16, window.innerWidth - 250);
+        tooltip.style.left = tx + 'px';
+        tooltip.style.top  = (event.clientY - 10) + 'px';
+      })
+      .on('mouseleave', () => {
+        if (!isMobile()) tooltip.style.opacity = '0';
+      })
+      /* mobile + desktop: click/tap */
+      .on('click', (event, d) => {
+        const data = visitData[+d.id];
+        if (!data) {
+          panel.classList.remove('visible');
+          hint.style.display = '';
+          return;
+        }
+        if (isMobile()) {
+          panel.innerHTML = buildTooltipHTML(data);
+          panel.classList.add('visible');
+          hint.style.display = 'none';
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+  });
+</script>
+</body>
+</html>
