@@ -27,7 +27,7 @@
       color: var(--text);
       line-height: 1.65;
       font-size: 15px;
-      padding-top: 48px; /* nav height */
+      padding-top: 48px;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -145,7 +145,7 @@
     .edu-year { font-size: 12px; color: var(--muted); padding-top: 2px; }
     .edu-name { font-weight: 600; margin-bottom: 2px; }
     .edu-degree { color: var(--muted); font-size: 13.5px; }
-    .edu-note { font-size: 12.5px; color: var(--accent); margin-top: 3px; }
+    .edu-note { font-size: 12.5px; color: #222; margin-top: 3px; }
 
     /* ---- experience ---- */
     .exp-header {
@@ -178,15 +178,6 @@
     }
 
     /* ---- projects ---- */
-    .project-group-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
     .project-stack { display: flex; flex-direction: column; gap: 12px; }
 
     .project-card {
@@ -200,6 +191,14 @@
     .project-meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
     .project-card p { font-size: 13px; color: #444; margin-bottom: 12px; }
 
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .tag {
@@ -210,6 +209,8 @@
       border-radius: 4px;
       color: var(--muted);
     }
+
+    .pdf-link { font-size: 12px; white-space: nowrap; }
 
     /* ---- travel map ---- */
     #map {
@@ -228,7 +229,6 @@
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
-    /* desktop tooltip */
     #map-tooltip {
       position: fixed;
       background: var(--surface);
@@ -245,7 +245,6 @@
       line-height: 1.5;
     }
 
-    /* mobile tap panel */
     #map-panel {
       display: none;
       background: var(--surface);
@@ -258,7 +257,6 @@
     }
 
     #map-panel.visible { display: block; }
-
     .map-hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
 
     /* ---- publication ---- */
@@ -304,28 +302,14 @@
         --container-pad: 18px;
       }
 
-      body { font-size: 15px; }
-
       #hero { padding: 40px 0 36px; }
-
       #hero h1 { font-size: 1.9rem; }
-
       .tagline { font-size: 0.88rem; }
 
-      /* edu: stack year above content */
-      .edu-item {
-        grid-template-columns: 1fr;
-        gap: 2px;
-      }
-
+      .edu-item { grid-template-columns: 1fr; gap: 2px; }
       .edu-year { padding-top: 0; }
 
-      /* hide desktop tooltip, use panel instead */
       #map-tooltip { display: none !important; }
-      #map-panel { display: none; }
-      #map-panel.visible { display: block; }
-
-      .film-meta { font-size: 12px; }
     }
   </style>
 </head>
@@ -355,13 +339,17 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
         Email
       </a>
-      <a class="link-btn" href="https://github.com/diziba213" target="_blank">
+      <a class="link-btn" href="https://github.com/gyehyukim" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.153-1.11-1.46-1.11-1.46-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.646 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.578 9.578 0 0 1 2.504.337c1.909-1.294 2.748-1.025 2.748-1.025.545 1.376.202 2.393.1 2.646.64.698 1.027 1.59 1.027 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.337-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         GitHub
       </a>
       <a class="link-btn" href="https://linkedin.com/in/gyehyukim" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
+      </a>
+      <a class="link-btn" href="https://scholar.google.com/citations?hl=ko&user=AhNz2h4AAAAJ" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Scholar
       </a>
       <a class="link-btn" href="https://www.instagram.com/gyehyu_kim/" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
@@ -376,7 +364,7 @@
   <section id="about">
     <h2>About</h2>
     <p>
-      I spent 7 years at Samsung Biologics building data infrastructure and operations strategy from the ground up — self-teaching SQL, integrating five enterprise systems, and turning manual reporting into real-time analytics for 250 people. I'm now finishing an MS at KAIST, with exchange programs at Carnegie Mellon (SCS) and Bocconi, where I applied those instincts to cloud architecture, ML, and business strategy. I'm drawn to roles where operations, data, and decision-making intersect.
+      Mechanical engineer turned data strategist. At Samsung Biologics, I built the team's analytics infrastructure from scratch — no IT background, no playbook — and ended up owning the data systems that ran an 8B KRW budget and informed C-suite decisions. Now finishing an MS at KAIST, with time at Carnegie Mellon and Bocconi, applying the same instinct to new domains: cloud systems, ML, and strategy. I work best where there's a messy operational problem and no obvious owner.
     </p>
   </section>
 </div>
@@ -392,7 +380,7 @@
         <div>
           <div class="edu-name">KAIST College of Business</div>
           <div class="edu-degree">MS in Information Management &nbsp;·&nbsp; Global Business Analytics</div>
-          <div class="edu-note">Exchange: Carnegie Mellon University (SCS, S3D) &nbsp;·&nbsp; Università Bocconi</div>
+          <div class="edu-note">CMU School of Computer Science (S3D) via GBA program &nbsp;·&nbsp; Università Bocconi (Exchange)</div>
         </div>
       </div>
 
@@ -401,7 +389,7 @@
         <div>
           <div class="edu-name">Korea University</div>
           <div class="edu-degree">MS in Mechanical Engineering &nbsp;·&nbsp; Microfluidics &amp; Biomedical Engineering</div>
-          <div class="edu-note">Co-first author publication in <em>Biomicrofluidics</em> (SCI)</div>
+          <div class="edu-note">Co-first author, <em>Biomicrofluidics</em> (SCI) &nbsp;·&nbsp; Presented at ESCHM 2016, Lisbon</div>
         </div>
       </div>
 
@@ -433,12 +421,12 @@
       <span class="exp-title">Samsung Biologics</span>
       <span class="exp-period">Jul 2017 – Dec 2024 &nbsp;·&nbsp; 7 yrs</span>
     </div>
-    <div class="exp-company">Senior Engineer &nbsp;·&nbsp; Incheon, South Korea</div>
+    <div class="exp-company">Senior Engineer &nbsp;·&nbsp; Data Strategy &amp; Operations &nbsp;·&nbsp; Incheon</div>
     <ul class="exp-bullets">
-      <li>Built the department's first data pipeline by self-teaching SQL and integrating five enterprise systems (EAM, SAP, LIMS, HR, Veeva) into a central data mart — reducing one-week manual reports to real-time self-service dashboards used by 25 managers.</li>
-      <li>Led centralization of lab equipment maintenance for 250 staff across three divisions (8B KRW annual budget), designing workflows and onboarding 1,500+ assets into GMP-compliant systems.</li>
-      <li>Investigated 7 years of settlement records, identified 700M KRW in billing errors, and redesigned the vendor workflow to achieve zero errors under CFO/CEO oversight.</li>
-      <li>Designed the company's first Reliability Program for 5,000+ manufacturing assets, coordinating three global advisors (Jacobs, Eli Lilly, Lonza) and delivering to CEO and group headquarters.</li>
+      <li>Self-taught SQL and built the facility team's first data mart — connecting five enterprise systems and replacing a week of manual work with real-time dashboards used daily by 25 managers.</li>
+      <li>Centralized lab equipment maintenance for 250 staff across three divisions: designed the service workflow, onboarded 1,500+ assets into GMP systems, and brought an 8B KRW budget under full visibility for the first time.</li>
+      <li>Led a forensic audit of 7 years of vendor settlements, surfaced 700M KRW in billing errors, and redesigned the reconciliation process to prevent recurrence.</li>
+      <li>Built the company's first manufacturing Reliability Program — 5,000+ assets, five domains, three global advisors — and introduced Risk-Based Inspection methodology into Korean biopharma for the first time.</li>
     </ul>
   </section>
 </div>
@@ -447,62 +435,52 @@
 <div class="container">
   <section id="projects">
     <h2>Projects</h2>
-
-    <p class="project-group-label">Academic</p>
     <div class="project-stack">
 
       <div class="project-card">
-        <h3>CargoOps — Digital Twin WMS</h3>
+        <h3>CargoOps — Digital Twin Warehouse System</h3>
         <div class="project-meta">CMU Capstone &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Team of 5</div>
-        <p>Designed an AWS serverless warehouse management system with a Digital Twin simulation in AnyLogic and Random Forest models for process time prediction. Simulation B showed same-cost, 2x throughput improvement.</p>
-        <div class="tag-list">
-          <span class="tag">AWS</span>
-          <span class="tag">DynamoDB</span>
-          <span class="tag">Athena</span>
-          <span class="tag">AnyLogic</span>
-          <span class="tag">Random Forest</span>
-          <span class="tag">Python</span>
+        <p>Built a serverless WMS on AWS and simulated the full warehouse workflow in AnyLogic. The model showed that with the same headcount and equipment, throughput could double — or the same output achieved at half the cost. Random Forest models predicted per-task processing times across six operational stages.</p>
+        <div class="card-footer">
+          <div class="tag-list">
+            <span class="tag">AWS</span>
+            <span class="tag">Digital Twin</span>
+            <span class="tag">Random Forest</span>
+            <span class="tag">Python</span>
+          </div>
+          <a class="pdf-link" href="7. Assignment 7_Final_CargoOps.pdf" target="_blank">PDF &rarr;</a>
         </div>
       </div>
 
       <div class="project-card">
-        <h3>Project Affinity — Influencer Matching</h3>
+        <h3>Project Affinity — Brand–Influencer Matching</h3>
         <div class="project-meta">CMU &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Team project</div>
-        <p>Multimodal brand-influencer fitness scoring using CNN (Inception V3) for image analysis and LLM for caption/hashtag evaluation across 75,000+ Instagram posts. A 10-point fitness score increase correlated with 13.2% more comments.</p>
-        <div class="tag-list">
-          <span class="tag">Python</span>
-          <span class="tag">CNN</span>
-          <span class="tag">LLM</span>
-          <span class="tag">Statistical Validation</span>
+        <p>Developed a multimodal fitness score for brand–influencer alignment using CNN image classification and LLM text analysis across 75,000+ Instagram posts. A 10-point score improvement corresponded to 13.2% more comments — an objective, explainable alternative to gut-feel influencer selection.</p>
+        <div class="card-footer">
+          <div class="tag-list">
+            <span class="tag">LLM</span>
+            <span class="tag">CNN</span>
+            <span class="tag">Python</span>
+            <span class="tag">Statistical Validation</span>
+          </div>
+          <a class="pdf-link" href="LSMA_PJT-Final_Team_Affinity_Brand Influencer Recommendation.pdf" target="_blank">PDF &rarr;</a>
         </div>
       </div>
 
       <div class="project-card">
-        <h3>Luxury Retail Analysis — D&amp;G vs. Prada</h3>
+        <h3>Luxury Retail Strategy — D&amp;G vs. Prada</h3>
         <div class="project-meta">Bocconi &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Evaluated by D&amp;G merchandiser</div>
-        <p>Combined Python web crawler (prices, materials, SKUs) with in-store field research in Milan's Montenapoleone district. Proposed a "New Essentials" 20-SKU line strategy; presented to and evaluated by a D&amp;G industry professional.</p>
-        <div class="tag-list">
-          <span class="tag">Python</span>
-          <span class="tag">Web Scraping</span>
-          <span class="tag">Competitive Analysis</span>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="project-group-label" style="margin-top: 28px;">Industry</p>
-    <div class="project-stack">
-
-      <div class="project-card">
-        <h3>Enterprise Data Pipeline — Samsung Biologics</h3>
-        <div class="project-meta">2022 – 2024 &nbsp;·&nbsp; Solo</div>
-        <p>Designed and operated the facility team's first data mart by connecting five enterprise systems via Azure EDW. Built Power BI dashboards for 25 manager-level active users and automated VP-level weekly KPI reporting.</p>
-        <div class="tag-list">
-          <span class="tag">SQL</span>
-          <span class="tag">Azure EDW</span>
-          <span class="tag">Power BI</span>
-          <span class="tag">SAP</span>
-          <span class="tag">IBM Maximo</span>
+        <p>Scraped men's outerwear data from both brands, then went on-site in Milan's Montenapoleone district to compare VMD, pricing architecture, and service styles. Identified a gap in D&amp;G's assortment and proposed a 20-SKU "New Essentials" line — evaluated directly by a D&amp;G industry professional.</p>
+        <div class="card-footer">
+          <div class="tag-list">
+            <span class="tag">Python</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag">Field Research</span>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <a class="pdf-link" href="Group 13_LuxuryCompanies_Presentation.pdf" target="_blank">Deck &rarr;</a>
+            <a class="pdf-link" href="Group 13_LuxuryCompanies_Full.pdf" target="_blank">Full &rarr;</a>
+          </div>
         </div>
       </div>
 
@@ -544,6 +522,10 @@
       <div class="pub-card" style="margin-top: 10px;">
         <h3>Effect of Micro-stirrer Geometry on Platelet Activation and Aggregation</h3>
         <p>Kim G., Lee H., Choi S. &nbsp;·&nbsp; Korean Society of Mechanical Engineers (KSME) &nbsp;·&nbsp; Nov 2015 &nbsp;·&nbsp; <a href="%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%20%EC%8A%A4%ED%84%B0%EB%9F%AC%EC%9D%98%20%EA%B8%B0%ED%95%98%ED%98%95%EC%83%81%EC%9D%B4%20%ED%98%88%EC%86%8C%ED%8C%90%20%ED%99%9C%EC%84%B1%ED%99%94%20%EB%B0%8F%20%EC%9D%91%EC%A7%91%EC%97%90%20%EB%AF%B8%EC%B9%98%EB%8A%94%20%EC%98%81%ED%96%A5.pdf" target="_blank">PDF</a></p>
+      </div>
+      <div class="pub-card" style="margin-top: 10px;">
+        <h3>Development of a New Method for Platelet Function Test and Its Shearing Condition in Microfluidic System</h3>
+        <p>Lee H., Kim G., Choi S., Shin S. &nbsp;·&nbsp; APS Division of Fluid Dynamics Meeting &nbsp;·&nbsp; Nov 2015</p>
       </div>
     </details>
   </section>
@@ -635,9 +617,9 @@
     return html;
   }
 
-  const mapEl  = document.getElementById('map');
-  const panel  = document.getElementById('map-panel');
-  const hint   = document.getElementById('map-hint');
+  const mapEl   = document.getElementById('map');
+  const panel   = document.getElementById('map-panel');
+  const hint    = document.getElementById('map-hint');
   const tooltip = document.getElementById('map-tooltip');
 
   const W = mapEl.clientWidth || 760;
@@ -668,7 +650,6 @@
       })
       .attr('stroke', '#fff')
       .attr('stroke-width', 0.4)
-      /* desktop: hover */
       .on('mousemove', (event, d) => {
         if (isMobile()) return;
         const data = visitData[+d.id];
@@ -679,17 +660,10 @@
         tooltip.style.left = tx + 'px';
         tooltip.style.top  = (event.clientY - 10) + 'px';
       })
-      .on('mouseleave', () => {
-        if (!isMobile()) tooltip.style.opacity = '0';
-      })
-      /* mobile + desktop: click/tap */
+      .on('mouseleave', () => { if (!isMobile()) tooltip.style.opacity = '0'; })
       .on('click', (event, d) => {
         const data = visitData[+d.id];
-        if (!data) {
-          panel.classList.remove('visible');
-          hint.style.display = '';
-          return;
-        }
+        if (!data) { panel.classList.remove('visible'); hint.style.display = ''; return; }
         if (isMobile()) {
           panel.innerHTML = buildTooltipHTML(data);
           panel.classList.add('visible');
