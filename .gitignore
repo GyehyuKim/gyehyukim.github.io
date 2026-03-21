@@ -1,4 +1,6 @@
 *.md
 .claude/
+# Excluded due to file size limits (GitHub max 100MB)
+# Full: 127MB, Presentation: 66MB — hosted on Google Drive instead
 Group 13_LuxuryCompanies_Full.pdf
 Group 13_LuxuryCompanies_Presentation.pdf
