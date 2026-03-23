@@ -95,11 +95,35 @@
     /* ---- hero ---- */
     #hero { padding: 64px 0 52px; border-bottom: 1px solid var(--border); }
 
+    .hero-layout {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+
+    .hero-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+
     #hero h1 {
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 24px;
+      margin-bottom: 4px;
+    }
+
+    .hero-name-ko {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0.04em;
     }
 
     .links { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -316,6 +340,8 @@
 
       #hero { padding: 40px 0 36px; }
       #hero h1 { font-size: 1.9rem; }
+      .hero-photo { width: 80px; height: 80px; }
+      .hero-layout { gap: 20px; }
 
       .edu-item { grid-template-columns: 1fr; gap: 2px; }
       .edu-year { padding-top: 0; }
@@ -343,7 +369,13 @@
 <!-- HERO -->
 <div class="container">
   <section id="hero">
-    <h1>Gyehyu Kim</h1>
+    <div class="hero-layout">
+      <img class="hero-photo" src="assets/profile.jpg" alt="Gyehyu Kim" />
+      <div>
+        <h1>Gyehyu Kim</h1>
+        <div class="hero-name-ko">김계휴</div>
+      </div>
+    </div>
     <div class="links">
       <a class="link-btn" href="mailto:diziba213@gmail.com">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
@@ -557,7 +589,7 @@
 <div class="container">
   <section id="films">
     <h2>Favorite Films</h2>
-    <p class="section-intro">Visually precise, structurally layered — usually nonlinear.</p>
+    <p class="section-intro">Few words. Rich color. Something tender.</p>
     <div class="film-list">
 
       <div class="film-item">
